@@ -92,25 +92,26 @@ def imager(param_optimiser: Dict, param_measop: Dict, param_proxop: Dict) -> Non
     if not param_measop["use_ROP"]:
         nufft_op = MeasOpPytorchFinufft
     else:
-        if param_measop["ROP_param"]["ROP_batchwise"]:
-            if param_optimiser.get("nfreqs", data["nFreqs"]) in [None, 1]:
-                from .mrop_ri_measurement_operator import create_meas_op_ROP_batchwise as create_meas_op_ROP
-            else:
-                from .mrop_ri_measurement_operator import create_meas_op_ROP_batchwise_mf as create_meas_op_ROP
-        elif param_measop["ROP_param"]["ROP_vmap"]:
-            if param_optimiser.get("nfreqs", data["nFreqs"]) in [None, 1]:
-                from .mrop_ri_measurement_operator import create_meas_op_ROP_vmap as create_meas_op_ROP
+        from .mrop_ri_measurement_operator import create_meas_op_ROP_vmap as create_meas_op_ROP
+        # if param_measop["ROP_param"]["ROP_batchwise"]:
+        #     if param_optimiser.get("nfreqs", data["nFreqs"]) in [None, 1]:
+        #         from .mrop_ri_measurement_operator import create_meas_op_ROP_batchwise as create_meas_op_ROP
+        #     else:
+        #         from .mrop_ri_measurement_operator import create_meas_op_ROP_batchwise_mf as create_meas_op_ROP
+        # elif param_measop["ROP_param"]["ROP_vmap"]:
+        #     if param_optimiser.get("nfreqs", data["nFreqs"]) in [None, 1]:
+        #         from .mrop_ri_measurement_operator import create_meas_op_ROP_vmap as create_meas_op_ROP
 
-                print("INFO: Using vmap ROP for single frequency data", flush=True)
-            else:
-                if param_measop["ROP_param"]["freq_mod"]:
-                    from .mrop_ri_measurement_operator import create_meas_op_ROP_vmap_mf_bf_mod as create_meas_op_ROP
-                    print("INFO: Using vmap ROP for multi-frequency data, treating frequency dimension as batches", flush=True)
-                else:
-                    from .mrop_ri_measurement_operator import create_meas_op_ROP_vmap_mf as create_meas_op_ROP
-                    print("INFO: Using vmap ROP for multi-frequency data", flush=True)
-        else:
-            from .mrop_ri_measurement_operator import create_meas_op_ROP
+        #         print("INFO: Using vmap ROP for single frequency data", flush=True)
+        #     else:
+        #         if param_measop["ROP_param"]["freq_mod"]:
+        #             from .mrop_ri_measurement_operator import create_meas_op_ROP_vmap_mf_bf_mod as create_meas_op_ROP
+        #             print("INFO: Using vmap ROP for multi-frequency data, treating frequency dimension as batches", flush=True)
+        #         else:
+        #             from .mrop_ri_measurement_operator import create_meas_op_ROP_vmap_mf as create_meas_op_ROP
+        #             print("INFO: Using vmap ROP for multi-frequency data", flush=True)
+        # else:
+        #     from .mrop_ri_measurement_operator import create_meas_op_ROP
 
         nufft_op = create_meas_op_ROP(MeasOpPytorchFinufft)
 

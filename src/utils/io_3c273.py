@@ -192,7 +192,7 @@ def load_data_to_tensor(
                 print(f"INFO: load weight_robustness from data file {weight_robustness}", flush=True)
             else:
                 print(f"INFO: weight_robustness {weight_robustness}", flush=True)
-            data["nWimag"] = gen_imaging_weights(
+            data["nWimag"] = gen_imaging_weight(
                 data["u"].clone(),
                 data["v"].clone(),
                 data["nW"],
