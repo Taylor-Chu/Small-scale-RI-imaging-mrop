@@ -47,6 +47,7 @@ logs/
 !data/3c353_gdth.fits
 !data/3c353_meas_dt_1_seed_0.mat
 !config/example.json
+!config/3C273_central_16chs_512.json
 !requirements.txt
 !tutorial_airi_python.ipynb
 !tutorial_usara_python.ipynb
