@@ -58,8 +58,8 @@ def imager(param_optimiser: Dict, param_measop: Dict, param_proxop: Dict) -> Non
         # verbose=param_optimiser["verbose"],
     )
     
-    if data["nFreqs"] == 1:
-        data["flag"] = data["flag"][:, 0, :].unsqueeze(1)
+    # if data["nFreqs"] == 1:
+    #     data["flag"] = data["flag"][:, 0, :].unsqueeze(1)
 
     if param_measop["use_ROP"]:
         assert param_measop["use_BDA"] is False, "BDA cannot be used with ROP"
